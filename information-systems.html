@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLEP Information Systems — Practice Questions</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1108;
+      --paper: #f5efe4;
+      --paper-dark: #ede4d3;
+      --accent: #b5411a;
+      --accent-light: #e8c4b0;
+      --gold: #c9922a;
+      --rule: #c8b99a;
+      --correct-bg: #e8f3e8;
+      --correct-border: #4a8c4a;
+      --shadow: rgba(26, 17, 8, 0.12);
+    }
+
+    body.dark {
+      --ink: #e8ddd0;
+      --paper: #1a1510;
+      --paper-dark: #2a221a;
+      --accent: #d4653a;
+      --accent-light: #4a2a1a;
+      --gold: #d4a23a;
+      --rule: #4a4035;
+      --correct-bg: #1a3a1a;
+      --correct-border: #5aaa5a;
+      --shadow: rgba(0, 0, 0, 0.4);
+    }
+
+    body.dark header {
+      background: #0f0c08;
+    }
+
+    body.dark .question-card {
+      background: #1f1a14;
+    }
+
+    body.dark .card-header {
+      background: #2a221a;
+    }
+
+    body.dark .option:hover {
+      background: #2a221a;
+    }
+
+    body.dark .option.wrong {
+      background: #3a1a1a;
+    }
+
+    body.dark #report-box {
+      background: #1f1a14;
+    }
+
+    body.dark #report-name,
+    body.dark #report-issue {
+      background: #2a221a;
+      color: #e8ddd0;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.7;
+      min-height: 100vh;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .dua-text {
+      font-family: 'Playfair Display', 'Source Serif 4', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--accent);
+      direction: rtl;
+      text-align: center;
+      margin-bottom: 2rem;
+      line-height: 1.9;
+      position: relative;
+      display: inline-block;
+      padding: 0.2rem 1rem;
+    }
+
+    .dua-text::before,
+    .dua-text::after {
+      content: '✦';
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin: 0 0.6rem;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(200, 185, 154, 0.18) 28px),
+        repeating-linear-gradient(90deg, transparent, transparent 27px, rgba(200, 185, 154, 0.07) 28px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body.dark::before {
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(74, 64, 53, 0.18) 28px),
+        repeating-linear-gradient(90deg, transparent, transparent 27px, rgba(74, 64, 53, 0.07) 28px);
+    }
+
+    header {
+      position: relative;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 3.5rem 2rem 2.8rem;
+      text-align: center;
+      overflow: hidden;
+      transition: background 0.25s;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
+    }
+
+    header .subtitle {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      color: var(--rule);
+      margin-bottom: 0.6rem;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      color: var(--paper);
+    }
+
+    header h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    header .meta {
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      color: var(--rule);
+      letter-spacing: 0.08em;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.7rem;
+      border-radius: 2px;
+      margin: 0 0.25rem;
+    }
+
+    .progress-bar-wrap {
+      background: var(--paper-dark);
+      border-bottom: 1px solid var(--rule);
+      padding: 0.55rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.78rem;
+      color: var(--gold);
+      font-family: 'Source Serif 4', serif;
+      letter-spacing: 0.06em;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 3px;
+      background: var(--rule);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      width: 0%;
+      transition: width 0.4s ease;
+      border-radius: 2px;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 6rem;
+    }
+
+    .question-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      margin-bottom: 1.6rem;
+      box-shadow: 0 2px 12px var(--shadow);
+      overflow: hidden;
+      transition: box-shadow 0.2s, background 0.25s;
+    }
+
+    .question-card:hover {
+      box-shadow: 0 4px 22px var(--shadow);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      background: var(--paper-dark);
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.25s;
+    }
+
+    .q-number {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--accent);
+      min-width: 52px;
+      padding: 0.9rem 0 0.9rem 1.2rem;
+      line-height: 1;
+    }
+
+    .q-section-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-left: auto;
+      padding: 0.9rem 1.1rem;
+      align-self: center;
+    }
+
+    .card-body {
+      padding: 1.3rem 1.6rem 0.4rem;
+      transition: background 0.25s;
+    }
+
+    .question-text {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .options {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 1rem;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.52rem 0.85rem;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      font-size: 0.97rem;
+      user-select: none;
+    }
+
+    .option:hover {
+      background: var(--paper);
+      border-color: var(--rule);
+    }
+
+    .option.selected {
+      background: var(--accent-light);
+      border-color: var(--accent);
+    }
+
+    .option.correct {
+      background: var(--correct-bg);
+      border-color: var(--correct-border);
+    }
+
+    .option.wrong {
+      background: #fde8e8;
+      border-color: #c0392b;
+    }
+
+    .option.wrong .option-letter {
+      background: #c0392b;
+      border-color: #c0392b;
+      color: #fff;
+    }
+
+    .option-letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 1.5px solid var(--rule);
+      border-radius: 50%;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+      font-family: 'Playfair Display', serif;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    .option.selected .option-letter {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .option.correct .option-letter {
+      background: var(--correct-border);
+      border-color: var(--correct-border);
+      color: #fff;
+    }
+
+    .answer-reveal {
+      display: none;
+      background: var(--paper-dark);
+      border-top: 1px dashed var(--rule);
+      padding: 0.7rem 1.6rem;
+      font-size: 0.88rem;
+      color: var(--correct-border);
+      font-style: italic;
+    }
+
+    .answer-reveal.show {
+      display: block;
+    }
+
+    .card-footer {
+      padding: 0.5rem 1.6rem 0.9rem;
+      display: flex;
+      gap: 0.6rem;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.38rem 1rem;
+      border: 1.5px solid var(--rule);
+      border-radius: 2px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--ink);
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    .btn:hover {
+      background: var(--paper-dark);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .btn-report {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border: 1.5px solid #c8b99a;
+      border-radius: 2px;
+      cursor: pointer;
+      background: transparent;
+      color: #9a7a55;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-report:hover {
+      background: #fff0ea;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--paper-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--rule);
+      border-radius: 4px;
+    }
+
+    #report-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: rgba(26, 17, 8, 0.60);
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(3px);
+    }
+
+    #report-overlay.active {
+      display: flex;
+    }
+
+    #report-box {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      box-shadow: 0 8px 48px rgba(26, 17, 8, 0.35);
+      padding: 2.2rem 2.4rem 1.8rem;
+      max-width: 420px;
+      width: 92%;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s;
+    }
+
+    #report-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
+    }
+
+    #report-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+
+    #report-box .report-subtitle {
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+    }
+
+    #report-name,
+    #report-issue {
+      width: 100%;
+      border: 1.5px solid var(--rule);
+      border-radius: 3px;
+      padding: 0.55rem 0.85rem;
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+      background: var(--paper);
+      transition: border-color 0.15s, background 0.25s, color 0.25s;
+      margin-bottom: 0.6rem;
+    }
+
+    #report-name:focus,
+    #report-issue:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    #report-name {
+      height: 42px;
+    }
+
+    #report-issue {
+      min-height: 90px;
+      resize: vertical;
+      margin-bottom: 1.1rem;
+    }
+
+    .report-actions {
+      display: flex;
+      gap: 0.65rem;
+      justify-content: flex-end;
+    }
+
+    .btn-cancel-report {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 0.42rem 1.1rem;
+      border: 1.5px solid var(--rule);
+      border-radius: 2px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--ink);
+      transition: background 0.15s;
+    }
+
+    .btn-cancel-report:hover {
+      background: var(--paper-dark);
+    }
+
+    .btn-send-report {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 0.42rem 1.3rem;
+      border: 1.5px solid var(--accent);
+      border-radius: 2px;
+      cursor: pointer;
+      background: var(--accent);
+      color: #fff;
+      transition: background 0.15s;
+    }
+
+    .btn-send-report:hover {
+      background: #9a3416;
+      border-color: #9a3416;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.78rem;
+      color: var(--rule);
+      letter-spacing: 0.1em;
+      border-top: 1px solid var(--rule);
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 1.5rem 0.9rem 4rem;
+      }
+
+      .card-body {
+        padding: 1rem 1rem 0.3rem;
+      }
+
+      .card-footer {
+        padding: 0.4rem 1rem 0.7rem;
+      }
+
+      .q-number {
+        min-width: 40px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <p class="subtitle">College Level Examination Program</p>
+    <h1>CLEP <em>Information Systems</em></h1>
+    <p class="meta"><span class="badge">Practice Questions</span> &nbsp;48 Questions</p>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <span id="progress-label">0 / 48 answered</span>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <button id="dark-toggle" title="Toggle dark mode"
+      style="background:none;border:1.5px solid var(--rule);border-radius:3px;cursor:pointer;font-size:1rem;line-height:1;padding:0.2rem 0.5rem;color:var(--gold);flex-shrink:0;"
+      onmouseover="this.style.background='var(--paper-dark)'"
+      onmouseout="this.style.background='transparent'">&#9788;</button>
+  </div>
+
+  <main>
+
+    <div class="question-card" id="q0">
+      <div class="card-header">
+        <div class="q-number">1</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is a justification for doing complete backups of reliable desktop notebook computers EXCEPT:</p>
+        <ul class="options">
+          <li class="option" data-q="0" data-correct="false"><span class="option-letter">A</span>New hard drives may fail at any moment for many different reasons.</li>
+          <li class="option" data-q="0" data-correct="false"><span class="option-letter">B</span>Notebooks or desktops can be stolen.</li>
+          <li class="option" data-q="0" data-correct="true"><span class="option-letter">C</span>Backups reduce the possibility of system failures.</li>
+          <li class="option" data-q="0" data-correct="false"><span class="option-letter">D</span>Hardware can be destroyed or damaged by fire or water.</li>
+          <li class="option" data-q="0" data-correct="false"><span class="option-letter">E</span>Software applications may become corrupted.</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q0"></div>
+    </div>
+
+    <div class="question-card" id="q1">
+      <div class="card-header">
+        <div class="q-number">2</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">What is the primary use of biometric technology?</p>
+        <ul class="options">
+          <li class="option" data-q="1" data-correct="false"><span class="option-letter">A</span>Reducing eyestrain</li>
+          <li class="option" data-q="1" data-correct="true"><span class="option-letter">B</span>Enhancing security</li>
+          <li class="option" data-q="1" data-correct="false"><span class="option-letter">C</span>Increasing processor speed</li>
+          <li class="option" data-q="1" data-correct="false"><span class="option-letter">D</span>Refining the user interface</li>
+          <li class="option" data-q="1" data-correct="false"><span class="option-letter">E</span>Enabling computer forensics</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q1"></div>
+    </div>
+
+    <div class="question-card" id="q2">
+      <div class="card-header">
+        <div class="q-number">3</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is designed to keep unauthorized traffic out of network systems?</p>
+        <ul class="options">
+          <li class="option" data-q="2" data-correct="false"><span class="option-letter">A</span>Secure socket layers</li>
+          <li class="option" data-q="2" data-correct="false"><span class="option-letter">B</span>Computer security system</li>
+          <li class="option" data-q="2" data-correct="false"><span class="option-letter">C</span>Encryption system</li>
+          <li class="option" data-q="2" data-correct="true"><span class="option-letter">D</span>Firewall</li>
+          <li class="option" data-q="2" data-correct="false"><span class="option-letter">E</span>Spyware</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q2"></div>
+    </div>
+
+    <div class="question-card" id="q3">
+      <div class="card-header">
+        <div class="q-number">4</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Bluetooth is which of the following?</p>
+        <ul class="options">
+          <li class="option" data-q="3" data-correct="false"><span class="option-letter">A</span>An accessory that allows a cell phone to be used remotely</li>
+          <li class="option" data-q="3" data-correct="true"><span class="option-letter">B</span>standard used to create small personal area networks</li>
+          <li class="option" data-q="3" data-correct="false"><span class="option-letter">C</span>Hardware that can be linked wirelessly</li>
+          <li class="option" data-q="3" data-correct="false"><span class="option-letter">D</span>An infrared-based device</li>
+          <li class="option" data-q="3" data-correct="false"><span class="option-letter">E</span>A Wi-Fi derivative that covers a larger area than a Wi-Fi network</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q3"></div>
+    </div>
+
+    <div class="question-card" id="q4">
+      <div class="card-header">
+        <div class="q-number">5</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is an infringement on intellectual property right?</p>
+        <ul class="options">
+          <li class="option" data-q="4" data-correct="false"><span class="option-letter">A</span>Malware</li>
+          <li class="option" data-q="4" data-correct="true"><span class="option-letter">B</span>Piracy</li>
+          <li class="option" data-q="4" data-correct="false"><span class="option-letter">C</span>Profiling</li>
+          <li class="option" data-q="4" data-correct="false"><span class="option-letter">D</span>Spamming</li>
+          <li class="option" data-q="4" data-correct="false"><span class="option-letter">E</span>Spoofing</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q4"></div>
+    </div>
+
+    <div class="question-card" id="q5">
+      <div class="card-header">
+        <div class="q-number">6</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">User training takes place during which phase of the systems development process?</p>
+        <ul class="options">
+          <li class="option" data-q="5" data-correct="false"><span class="option-letter">A</span>Analysis</li>
+          <li class="option" data-q="5" data-correct="false"><span class="option-letter">B</span>Design</li>
+          <li class="option" data-q="5" data-correct="true"><span class="option-letter">C</span>Implementation</li>
+          <li class="option" data-q="5" data-correct="false"><span class="option-letter">D</span>Maintenance</li>
+          <li class="option" data-q="5" data-correct="false"><span class="option-letter">E</span>Planning</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q5"></div>
+    </div>
+
+    <div class="question-card" id="q6">
+      <div class="card-header">
+        <div class="q-number">7</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is NOT involved in determining how a global positioning system locates a user?</p>
+        <ul class="options">
+          <li class="option" data-q="6" data-correct="true"><span class="option-letter">A</span>The distance from the earth to the sun</li>
+          <li class="option" data-q="6" data-correct="false"><span class="option-letter">B</span>The distance from the receiver to the satellites</li>
+          <li class="option" data-q="6" data-correct="false"><span class="option-letter">C</span>The information from three or more satellites</li>
+          <li class="option" data-q="6" data-correct="false"><span class="option-letter">D</span>The location of the satellites</li>
+          <li class="option" data-q="6" data-correct="false"><span class="option-letter">E</span>The time for information to be sent from a satellite</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q6"></div>
+    </div>
+
+    <div class="question-card" id="q7">
+      <div class="card-header">
+        <div class="q-number">8</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which is used by the national weather service to process the data for weather forecasting?</p>
+        <ul class="options">
+          <li class="option" data-q="7" data-correct="false"><span class="option-letter">A</span>A personal computer</li>
+          <li class="option" data-q="7" data-correct="false"><span class="option-letter">B</span>A mainframe</li>
+          <li class="option" data-q="7" data-correct="true"><span class="option-letter">C</span>A supercomputer</li>
+          <li class="option" data-q="7" data-correct="false"><span class="option-letter">D</span>The internet</li>
+          <li class="option" data-q="7" data-correct="false"><span class="option-letter">E</span>A global positioning system</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q7"></div>
+    </div>
+
+    <div class="question-card" id="q8">
+      <div class="card-header">
+        <div class="q-number">9</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of these can be used to connect a computer to a peripheral device?<br>I. Wired connection<br>II. LAN connection<br>III. Bluetooth</p>
+        <ul class="options">
+          <li class="option" data-q="8" data-correct="false"><span class="option-letter">A</span>I only</li>
+          <li class="option" data-q="8" data-correct="false"><span class="option-letter">B</span>II only</li>
+          <li class="option" data-q="8" data-correct="false"><span class="option-letter">C</span>III only</li>
+          <li class="option" data-q="8" data-correct="true"><span class="option-letter">D</span>I and III only</li>
+          <li class="option" data-q="8" data-correct="false"><span class="option-letter">E</span>I, II, and III</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q8"></div>
+    </div>
+
+    <div class="question-card" id="q9">
+      <div class="card-header">
+        <div class="q-number">10</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following groups should have the greatest influence on the design of an interface for a company's website?</p>
+        <ul class="options">
+          <li class="option" data-q="9" data-correct="false"><span class="option-letter">A</span>The design teams</li>
+          <li class="option" data-q="9" data-correct="false"><span class="option-letter">B</span>The company's upper management</li>
+          <li class="option" data-q="9" data-correct="false"><span class="option-letter">C</span>The project management team</li>
+          <li class="option" data-q="9" data-correct="true"><span class="option-letter">D</span>The visitors to the website</li>
+          <li class="option" data-q="9" data-correct="false"><span class="option-letter">E</span>The website maintenance group</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q9"></div>
+    </div>
+
+    <div class="question-card" id="q10">
+      <div class="card-header">
+        <div class="q-number">11</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is typically NOT associated with the use of RAD?</p>
+        <ul class="options">
+          <li class="option" data-q="10" data-correct="true"><span class="option-letter">A</span>Sequential programming</li>
+          <li class="option" data-q="10" data-correct="false"><span class="option-letter">B</span>Menus and dialog boxes</li>
+          <li class="option" data-q="10" data-correct="false"><span class="option-letter">C</span>A visual programming language</li>
+          <li class="option" data-q="10" data-correct="false"><span class="option-letter">D</span>Preprogrammed software modules</li>
+          <li class="option" data-q="10" data-correct="false"><span class="option-letter">E</span>Prebuilt components such as windows and buttons</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q10"></div>
+    </div>
+
+    <div class="question-card" id="q11">
+      <div class="card-header">
+        <div class="q-number">12</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">A company is converting an application that has been in operation over an extended time period. The conversion to the new components of the application are to be replaced at different times. As each component is removed from the application and is replaced by the new component, the conversion process is being used by this company?</p>
+        <ul class="options">
+          <li class="option" data-q="11" data-correct="false"><span class="option-letter">A</span>Direct conversion</li>
+          <li class="option" data-q="11" data-correct="false"><span class="option-letter">B</span>Parallel conversion</li>
+          <li class="option" data-q="11" data-correct="true"><span class="option-letter">C</span>Phased conversion</li>
+          <li class="option" data-q="11" data-correct="false"><span class="option-letter">D</span>Pilot conversion</li>
+          <li class="option" data-q="11" data-correct="false"><span class="option-letter">E</span>Site conversion</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q11"></div>
+    </div>
+
+    <div class="question-card" id="q12">
+      <div class="card-header">
+        <div class="q-number">13</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">For two communication devices to be able to communicate with each other, they must use the same?</p>
+        <ul class="options">
+          <li class="option" data-q="12" data-correct="false"><span class="option-letter">A</span>Software</li>
+          <li class="option" data-q="12" data-correct="false"><span class="option-letter">B</span>Hardware</li>
+          <li class="option" data-q="12" data-correct="false"><span class="option-letter">C</span>Operating system</li>
+          <li class="option" data-q="12" data-correct="true"><span class="option-letter">D</span>Protocol</li>
+          <li class="option" data-q="12" data-correct="false"><span class="option-letter">E</span>Transmission media</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q12"></div>
+    </div>
+
+    <div class="question-card" id="q13">
+      <div class="card-header">
+        <div class="q-number">14</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is true of the devices connected to a LAN?</p>
+        <ul class="options">
+          <li class="option" data-q="13" data-correct="false"><span class="option-letter">A</span>Directly connected devices can use different cabling protocols</li>
+          <li class="option" data-q="13" data-correct="false"><span class="option-letter">B</span>All devices must be within 100 feet of each other</li>
+          <li class="option" data-q="13" data-correct="false"><span class="option-letter">C</span>All computers must have a similar hardware configuration</li>
+          <li class="option" data-q="13" data-correct="false"><span class="option-letter">D</span>All computers must use the same operating system</li>
+          <li class="option" data-q="13" data-correct="true"><span class="option-letter">E</span>Each shared printer has the ability to be accessed by each computer</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q13"></div>
+    </div>
+
+    <div class="question-card" id="q14">
+      <div class="card-header">
+        <div class="q-number">15</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Users are reluctant to get involved in new information system projects. Which of the following is likely to be the cause of this reluctance?</p>
+        <ul class="options">
+          <li class="option" data-q="14" data-correct="true"><span class="option-letter">A</span>They are uncomfortable in their new roles.</li>
+          <li class="option" data-q="14" data-correct="false"><span class="option-letter">B</span>They resent being asked to put more time into the new practices.</li>
+          <li class="option" data-q="14" data-correct="false"><span class="option-letter">C</span>They prefer to stick with their own business specialty.</li>
+          <li class="option" data-q="14" data-correct="false"><span class="option-letter">D</span>They have a limited information systems background.</li>
+          <li class="option" data-q="14" data-correct="false"><span class="option-letter">E</span>They are concerned about the hardware requirements for the project.</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q14"></div>
+    </div>
+
+    <div class="question-card" id="q15">
+      <div class="card-header">
+        <div class="q-number">16</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is (are) true of a virtual private network?<br>I. It uses encryption.<br>II. It can serve as a wireless local area network.<br>III. It can serve as a wide area network.</p>
+        <ul class="options">
+          <li class="option" data-q="15" data-correct="false"><span class="option-letter">A</span>I only</li>
+          <li class="option" data-q="15" data-correct="false"><span class="option-letter">B</span>II only</li>
+          <li class="option" data-q="15" data-correct="false"><span class="option-letter">C</span>III only</li>
+          <li class="option" data-q="15" data-correct="false"><span class="option-letter">D</span>I and II</li>
+          <li class="option" data-q="15" data-correct="true"><span class="option-letter">E</span>I and III</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q15"></div>
+    </div>
+
+    <div class="question-card" id="q16">
+      <div class="card-header">
+        <div class="q-number">17</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">What is the primary purpose of RAID technology?</p>
+        <ul class="options">
+          <li class="option" data-q="16" data-correct="false"><span class="option-letter">A</span>To increase storage capacity</li>
+          <li class="option" data-q="16" data-correct="false"><span class="option-letter">B</span>To increase the data retrieval rate</li>
+          <li class="option" data-q="16" data-correct="true"><span class="option-letter">C</span>To enhance storage reliability</li>
+          <li class="option" data-q="16" data-correct="false"><span class="option-letter">D</span>To improve security</li>
+          <li class="option" data-q="16" data-correct="false"><span class="option-letter">E</span>To enable cloud computing</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q16"></div>
+    </div>
+
+    <div class="question-card" id="q17">
+      <div class="card-header">
+        <div class="q-number">18</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is NOT true of client -server technology?</p>
+        <ul class="options">
+          <li class="option" data-q="17" data-correct="false"><span class="option-letter">A</span>Both the client and the server can perform processing.</li>
+          <li class="option" data-q="17" data-correct="true"><span class="option-letter">B</span>Both the client and the server must use the same operating system.</li>
+          <li class="option" data-q="17" data-correct="false"><span class="option-letter">C</span>A single client can access multiple servers.</li>
+          <li class="option" data-q="17" data-correct="false"><span class="option-letter">D</span>Both client and server play a part in user authentication.</li>
+          <li class="option" data-q="17" data-correct="false"><span class="option-letter">E</span>The server can process requests from multiple clients simultaneously.</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q17"></div>
+    </div>
+
+    <div class="question-card" id="q18">
+      <div class="card-header">
+        <div class="q-number">19</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following devices converts digital information into analog signals and then converts the emitted signal back into the digital domain?</p>
+        <ul class="options">
+          <li class="option" data-q="18" data-correct="false"><span class="option-letter">A</span>Adapter</li>
+          <li class="option" data-q="18" data-correct="true"><span class="option-letter">B</span>Modem</li>
+          <li class="option" data-q="18" data-correct="false"><span class="option-letter">C</span>Encoder</li>
+          <li class="option" data-q="18" data-correct="false"><span class="option-letter">D</span>Router</li>
+          <li class="option" data-q="18" data-correct="false"><span class="option-letter">E</span>Switch</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q18"></div>
+    </div>
+
+    <div class="question-card" id="q19">
+      <div class="card-header">
+        <div class="q-number">20</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following statements is correct regarding the open source movement?</p>
+        <ul class="options">
+          <li class="option" data-q="19" data-correct="false"><span class="option-letter">A</span>Open Source programmers are concerned with the financial gains of proprietary owners.</li>
+          <li class="option" data-q="19" data-correct="false"><span class="option-letter">B</span>The licensed software places restrictions on other software that is distributed with it.</li>
+          <li class="option" data-q="19" data-correct="false"><span class="option-letter">C</span>The rights attached to a program depend on the program's being part of a particular software distribution.</li>
+          <li class="option" data-q="19" data-correct="false"><span class="option-letter">D</span>Open Source does not rely primarily on peer review to find and eliminate bugs in programs.</li>
+          <li class="option" data-q="19" data-correct="true"><span class="option-letter">E</span>The holder of the license of the source code may not collect royalties on the distribution program.</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q19"></div>
+    </div>
+
+    <div class="question-card" id="q20">
+      <div class="card-header">
+        <div class="q-number">21</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">What is the primary purpose of JAD in the system development process?</p>
+        <ul class="options">
+          <li class="option" data-q="20" data-correct="false"><span class="option-letter">A</span>To facilitate communication among users</li>
+          <li class="option" data-q="20" data-correct="false"><span class="option-letter">B</span>To enable users to create their own systems</li>
+          <li class="option" data-q="20" data-correct="true"><span class="option-letter">C</span>To determine application requirements by involving users</li>
+          <li class="option" data-q="20" data-correct="false"><span class="option-letter">D</span>To complete a system in the least possible amount of time</li>
+          <li class="option" data-q="20" data-correct="false"><span class="option-letter">E</span>To provide a preliminary model of a system as quickly as possible</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q20"></div>
+    </div>
+
+    <div class="question-card" id="q21">
+      <div class="card-header">
+        <div class="q-number">22</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">What is the function of network interface card?</p>
+        <ul class="options">
+          <li class="option" data-q="21" data-correct="false"><span class="option-letter">A</span>Allocating network traffic</li>
+          <li class="option" data-q="21" data-correct="false"><span class="option-letter">B</span>Amplifying a weak network signal</li>
+          <li class="option" data-q="21" data-correct="true"><span class="option-letter">C</span>Connecting a device to a network</li>
+          <li class="option" data-q="21" data-correct="false"><span class="option-letter">D</span>Connecting a computer to a peripheral</li>
+          <li class="option" data-q="21" data-correct="false"><span class="option-letter">E</span>Converting synchronous transmissions to asynchronous transmissions</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q21"></div>
+    </div>
+
+    <div class="question-card" id="q22">
+      <div class="card-header">
+        <div class="q-number">23</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which database management model is the most widely used logical model?</p>
+        <ul class="options">
+          <li class="option" data-q="22" data-correct="false"><span class="option-letter">A</span>Flat file</li>
+          <li class="option" data-q="22" data-correct="false"><span class="option-letter">B</span>Hierarchical</li>
+          <li class="option" data-q="22" data-correct="false"><span class="option-letter">C</span>Index</li>
+          <li class="option" data-q="22" data-correct="false"><span class="option-letter">D</span>Network</li>
+          <li class="option" data-q="22" data-correct="true"><span class="option-letter">E</span>Relational</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q22"></div>
+    </div>
+
+    <div class="question-card" id="q23">
+      <div class="card-header">
+        <div class="q-number">24</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is the term used for the movement from one slide to the next when using presentation software?</p>
+        <ul class="options">
+          <li class="option" data-q="23" data-correct="false"><span class="option-letter">A</span>Adjacent skip</li>
+          <li class="option" data-q="23" data-correct="false"><span class="option-letter">B</span>Charting</li>
+          <li class="option" data-q="23" data-correct="false"><span class="option-letter">C</span>Effect</li>
+          <li class="option" data-q="23" data-correct="false"><span class="option-letter">D</span>Slide phasing</li>
+          <li class="option" data-q="23" data-correct="true"><span class="option-letter">E</span>Transition</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q23"></div>
+    </div>
+
+    <div class="question-card" id="q24">
+      <div class="card-header">
+        <div class="q-number">25</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Browsing the web requires the use of which of the following technologies?</p>
+        <ul class="options">
+          <li class="option" data-q="24" data-correct="false"><span class="option-letter">A</span>XML</li>
+          <li class="option" data-q="24" data-correct="true"><span class="option-letter">B</span>HTTP</li>
+          <li class="option" data-q="24" data-correct="false"><span class="option-letter">C</span>SQL</li>
+          <li class="option" data-q="24" data-correct="false"><span class="option-letter">D</span>EDI</li>
+          <li class="option" data-q="24" data-correct="false"><span class="option-letter">E</span>JAVA</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q24"></div>
+    </div>
+
+    <div class="question-card" id="q25">
+      <div class="card-header">
+        <div class="q-number">26</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">The files stored on a user's computer by websites to track user preferences and behaviors are known as</p>
+        <ul class="options">
+          <li class="option" data-q="25" data-correct="true"><span class="option-letter">A</span>Cookies</li>
+          <li class="option" data-q="25" data-correct="false"><span class="option-letter">B</span>Spam</li>
+          <li class="option" data-q="25" data-correct="false"><span class="option-letter">C</span>Spyware</li>
+          <li class="option" data-q="25" data-correct="false"><span class="option-letter">D</span>Indexes</li>
+          <li class="option" data-q="25" data-correct="false"><span class="option-letter">E</span>Batch files</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q25"></div>
+    </div>
+
+    <div class="question-card" id="q26">
+      <div class="card-header">
+        <div class="q-number">27</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is a principle of groupwork<br>Select all that apply</p>
+        <ul class="options">
+          <li class="option" data-q="26" data-correct="false"><span class="option-letter">A</span>Calibration</li>
+          <li class="option" data-q="26" data-correct="false"><span class="option-letter">B</span>Certification</li>
+          <li class="option" data-q="26" data-correct="true"><span class="option-letter">C</span>Collaboration</li>
+          <li class="option" data-q="26" data-correct="true"><span class="option-letter">D</span>Communication</li>
+          <li class="option" data-q="26" data-correct="false"><span class="option-letter">E</span>Concatenation</li>
+          <li class="option" data-q="26" data-correct="true"><span class="option-letter">F</span>Coordination</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q26"></div>
+    </div>
+
+    <div class="question-card" id="q27">
+      <div class="card-header">
+        <div class="q-number">28</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">When testing a web page's functionality, which of the following is generally NOT considered critical?</p>
+        <ul class="options">
+          <li class="option" data-q="27" data-correct="false"><span class="option-letter">A</span>Presence of valid hyperlinks</li>
+          <li class="option" data-q="27" data-correct="false"><span class="option-letter">B</span>Proper performance of buttons</li>
+          <li class="option" data-q="27" data-correct="false"><span class="option-letter">C</span>Consistent presentation across major browsers</li>
+          <li class="option" data-q="27" data-correct="false"><span class="option-letter">D</span>Minimal number of clicks to perform tasks</li>
+          <li class="option" data-q="27" data-correct="true"><span class="option-letter">E</span>Likelihood of page being found by internet search</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q27"></div>
+    </div>
+
+    <div class="question-card" id="q28">
+      <div class="card-header">
+        <div class="q-number">29</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">What is the primary responsibility of the World Wide Web Consortium?</p>
+        <ul class="options">
+          <li class="option" data-q="28" data-correct="false"><span class="option-letter">A</span>Organize the categories of the various web pages accessible on the internet</li>
+          <li class="option" data-q="28" data-correct="false"><span class="option-letter">B</span>Oversee the closed captioning capacity of websites</li>
+          <li class="option" data-q="28" data-correct="true"><span class="option-letter">C</span>Oversee standards and guidelines for many areas of the internet</li>
+          <li class="option" data-q="28" data-correct="false"><span class="option-letter">D</span>Monitor the data redundancy of the world wide web</li>
+          <li class="option" data-q="28" data-correct="false"><span class="option-letter">E</span>Recommend standards for web filtering software</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q28"></div>
+    </div>
+
+    <div class="question-card" id="q29">
+      <div class="card-header">
+        <div class="q-number">30</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following application is most appropriate creating marketing flyers?</p>
+        <ul class="options">
+          <li class="option" data-q="29" data-correct="true"><span class="option-letter">A</span>Word processing</li>
+          <li class="option" data-q="29" data-correct="false"><span class="option-letter">B</span>Spread sheet</li>
+          <li class="option" data-q="29" data-correct="false"><span class="option-letter">C</span>Database management</li>
+          <li class="option" data-q="29" data-correct="false"><span class="option-letter">D</span>Project management</li>
+          <li class="option" data-q="29" data-correct="false"><span class="option-letter">E</span>Document imaging</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q29"></div>
+    </div>
+
+    <div class="question-card" id="q30">
+      <div class="card-header">
+        <div class="q-number">31</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is required to transmit information via the internet?</p>
+        <ul class="options">
+          <li class="option" data-q="30" data-correct="false"><span class="option-letter">A</span>RAID</li>
+          <li class="option" data-q="30" data-correct="true"><span class="option-letter">B</span>TCP\IP</li>
+          <li class="option" data-q="30" data-correct="false"><span class="option-letter">C</span>SGML</li>
+          <li class="option" data-q="30" data-correct="false"><span class="option-letter">D</span>XML</li>
+          <li class="option" data-q="30" data-correct="false"><span class="option-letter">E</span>WIFI</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q30"></div>
+    </div>
+
+    <div class="question-card" id="q31">
+      <div class="card-header">
+        <div class="q-number">32</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following statements about intranets is false?</p>
+        <ul class="options">
+          <li class="option" data-q="31" data-correct="true"><span class="option-letter">A</span>Intranets require special browser software</li>
+          <li class="option" data-q="31" data-correct="false"><span class="option-letter">B</span>Intranets use the same protocols as the internet</li>
+          <li class="option" data-q="31" data-correct="false"><span class="option-letter">C</span>Intranets are inaccessible to the public</li>
+          <li class="option" data-q="31" data-correct="false"><span class="option-letter">D</span>Intranets permit email, file sharing, and other features commonly associated with the internet</li>
+          <li class="option" data-q="31" data-correct="false"><span class="option-letter">E</span>Intranets may use the same software as the internet</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q31"></div>
+    </div>
+
+    <div class="question-card" id="q32">
+      <div class="card-header">
+        <div class="q-number">33</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">For which of the following reasons is hard disk storage space allocated to a web browser as a file cache?</p>
+        <ul class="options">
+          <li class="option" data-q="32" data-correct="false"><span class="option-letter">A</span>To protect the system from direct access by out side hackers</li>
+          <li class="option" data-q="32" data-correct="false"><span class="option-letter">B</span>To keep a record of what sites the user has visited</li>
+          <li class="option" data-q="32" data-correct="true"><span class="option-letter">C</span>To improve the loading speed of frequently used websites</li>
+          <li class="option" data-q="32" data-correct="false"><span class="option-letter">D</span>To temporarily index data so that less RAM is used by the browser application</li>
+          <li class="option" data-q="32" data-correct="false"><span class="option-letter">E</span>To compensate for differences in data transfer rates between the system and the web</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q32"></div>
+    </div>
+
+    <div class="question-card" id="q33">
+      <div class="card-header">
+        <div class="q-number">34</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">The process used by web search engines to keep the index of links up to date is called web?</p>
+        <ul class="options">
+          <li class="option" data-q="33" data-correct="false"><span class="option-letter">A</span>Farming</li>
+          <li class="option" data-q="33" data-correct="false"><span class="option-letter">B</span>Tagging</li>
+          <li class="option" data-q="33" data-correct="false"><span class="option-letter">C</span>Filtering</li>
+          <li class="option" data-q="33" data-correct="true"><span class="option-letter">D</span>Crawling</li>
+          <li class="option" data-q="33" data-correct="false"><span class="option-letter">E</span>Management</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q33"></div>
+    </div>
+
+    <div class="question-card" id="q34">
+      <div class="card-header">
+        <div class="q-number">35</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is an activity that is significantly easier to perform when using database software than when using spreadsheet software?</p>
+        <ul class="options">
+          <li class="option" data-q="34" data-correct="false"><span class="option-letter">A</span>Creating tables</li>
+          <li class="option" data-q="34" data-correct="false"><span class="option-letter">B</span>Sorting data</li>
+          <li class="option" data-q="34" data-correct="false"><span class="option-letter">C</span>Creating charts</li>
+          <li class="option" data-q="34" data-correct="false"><span class="option-letter">D</span>Checking spelling</li>
+          <li class="option" data-q="34" data-correct="true"><span class="option-letter">E</span>Creating reports</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q34"></div>
+    </div>
+
+    <div class="question-card" id="q35">
+      <div class="card-header">
+        <div class="q-number">36</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following combines content from several different websites?</p>
+        <ul class="options">
+          <li class="option" data-q="35" data-correct="false"><span class="option-letter">A</span>Web conference</li>
+          <li class="option" data-q="35" data-correct="true"><span class="option-letter">B</span>Mashup</li>
+          <li class="option" data-q="35" data-correct="false"><span class="option-letter">C</span>Collaborative software</li>
+          <li class="option" data-q="35" data-correct="false"><span class="option-letter">D</span>Cloud computing</li>
+          <li class="option" data-q="35" data-correct="false"><span class="option-letter">E</span>Groupware</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q35"></div>
+    </div>
+
+    <div class="question-card" id="q36">
+      <div class="card-header">
+        <div class="q-number">37</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">In website design, "accessibility" most commonly refers to whether a site:</p>
+        <ul class="options">
+          <li class="option" data-q="36" data-correct="true"><span class="option-letter">A</span>Accommodates users with disabilities or adaptive devices</li>
+          <li class="option" data-q="36" data-correct="false"><span class="option-letter">B</span>Requires users to log in before browsing content</li>
+          <li class="option" data-q="36" data-correct="false"><span class="option-letter">C</span>Can be fully functional and compatible with any current browser software</li>
+          <li class="option" data-q="36" data-correct="false"><span class="option-letter">D</span>Contains links to an FAQ page</li>
+          <li class="option" data-q="36" data-correct="false"><span class="option-letter">E</span>Can accommodate multiple languages</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q36"></div>
+    </div>
+
+    <div class="question-card" id="q37">
+      <div class="card-header">
+        <div class="q-number">38</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is (are) a benefit of cloud storage?<br>I. Storage costs are uniform for all customers<br>II. Storage is available even when wide area networks are not operating<br>III. Common maintenance tasks are performed by a service provider</p>
+        <ul class="options">
+          <li class="option" data-q="37" data-correct="false"><span class="option-letter">A</span>I only</li>
+          <li class="option" data-q="37" data-correct="false"><span class="option-letter">B</span>II only</li>
+          <li class="option" data-q="37" data-correct="true"><span class="option-letter">C</span>III only</li>
+          <li class="option" data-q="37" data-correct="false"><span class="option-letter">D</span>I and II only</li>
+          <li class="option" data-q="37" data-correct="false"><span class="option-letter">E</span>I, II, and III</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q37"></div>
+    </div>
+
+    <div class="question-card" id="q38">
+      <div class="card-header">
+        <div class="q-number">39</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">What is the goal of search engine optimization?</p>
+        <ul class="options">
+          <li class="option" data-q="38" data-correct="false"><span class="option-letter">A</span>Decreasing the number of lost packets when search engines results are returned</li>
+          <li class="option" data-q="38" data-correct="false"><span class="option-letter">B</span>Decreasing the time it takes for web crawling</li>
+          <li class="option" data-q="38" data-correct="true"><span class="option-letter">C</span>Increasing the likelihood that search engines results will be shows in the content index</li>
+          <li class="option" data-q="38" data-correct="false"><span class="option-letter">D</span>Increasing the number of visitors to a website</li>
+          <li class="option" data-q="38" data-correct="false"><span class="option-letter">E</span>Increasing the speed at which search engine results appear</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q38"></div>
+    </div>
+
+    <div class="question-card" id="q39">
+      <div class="card-header">
+        <div class="q-number">40</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which spreadsheet feature makes it possible to back-solve for the value in a cell to reach a desired outcome in a formula?</p>
+        <ul class="options">
+          <li class="option" data-q="39" data-correct="true"><span class="option-letter">A</span>goal seeking</li>
+          <li class="option" data-q="39" data-correct="false"><span class="option-letter">B</span>Nested if</li>
+          <li class="option" data-q="39" data-correct="false"><span class="option-letter">C</span>Pivot table</li>
+          <li class="option" data-q="39" data-correct="false"><span class="option-letter">D</span>Scenario analysis</li>
+          <li class="option" data-q="39" data-correct="false"><span class="option-letter">E</span>Vertical lookup</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q39"></div>
+    </div>
+
+    <div class="question-card" id="q40">
+      <div class="card-header">
+        <div class="q-number">41</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">A customer is making a purchase using a credit card , the clerk handles the sale by using a computer system that verifies the credit card and approves the purchase if the customer is in good standing and has not exceeded the cards credit limit. What type of system is the clerk using?</p>
+        <ul class="options">
+          <li class="option" data-q="40" data-correct="false"><span class="option-letter">A</span>A batch processing system</li>
+          <li class="option" data-q="40" data-correct="false"><span class="option-letter">B</span>A business intelligence system</li>
+          <li class="option" data-q="40" data-correct="false"><span class="option-letter">C</span>An office information system</li>
+          <li class="option" data-q="40" data-correct="false"><span class="option-letter">D</span>A management information system</li>
+          <li class="option" data-q="40" data-correct="true"><span class="option-letter">E</span>A real time transaction processing system</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q40"></div>
+    </div>
+
+    <div class="question-card" id="q41">
+      <div class="card-header">
+        <div class="q-number">42</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">A file's extension can suggest to a user which of the following?<br>I. The types of programs that can interpret the file<br>II. The format of the data contained in the file<br>III. The physical location of the file</p>
+        <ul class="options">
+          <li class="option" data-q="41" data-correct="false"><span class="option-letter">A</span>I only</li>
+          <li class="option" data-q="41" data-correct="false"><span class="option-letter">B</span>II only</li>
+          <li class="option" data-q="41" data-correct="false"><span class="option-letter">C</span>III only</li>
+          <li class="option" data-q="41" data-correct="true"><span class="option-letter">D</span>I and II</li>
+          <li class="option" data-q="41" data-correct="false"><span class="option-letter">E</span>I and III</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q41"></div>
+    </div>
+
+    <div class="question-card" id="q42">
+      <div class="card-header">
+        <div class="q-number">43</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">A corporation is most likely to use which of the following technologies to identify patterns and relationships in data?</p>
+        <ul class="options">
+          <li class="option" data-q="42" data-correct="false"><span class="option-letter">A</span>Marketing information system</li>
+          <li class="option" data-q="42" data-correct="false"><span class="option-letter">B</span>Customer management system</li>
+          <li class="option" data-q="42" data-correct="false"><span class="option-letter">C</span>Customer relationship organizer</li>
+          <li class="option" data-q="42" data-correct="true"><span class="option-letter">D</span>Data mining</li>
+          <li class="option" data-q="42" data-correct="false"><span class="option-letter">E</span>Data mart</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q42"></div>
+    </div>
+
+    <div class="question-card" id="q43">
+      <div class="card-header">
+        <div class="q-number">44</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">SQL is primarily used to:</p>
+        <ul class="options">
+          <li class="option" data-q="43" data-correct="false"><span class="option-letter">A</span>Write a start up routine for an operating system</li>
+          <li class="option" data-q="43" data-correct="false"><span class="option-letter">B</span>Advertise a series of contents on a PC</li>
+          <li class="option" data-q="43" data-correct="false"><span class="option-letter">C</span>encrypt the contents of a file</li>
+          <li class="option" data-q="43" data-correct="true"><span class="option-letter">D</span>retrieve data in a relational database</li>
+          <li class="option" data-q="43" data-correct="false"><span class="option-letter">E</span>program a graphical information system</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q43"></div>
+    </div>
+
+    <div class="question-card" id="q44">
+      <div class="card-header">
+        <div class="q-number">45</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is the most effective means for updating corporate data during business travel?</p>
+        <ul class="options">
+          <li class="option" data-q="44" data-correct="false"><span class="option-letter">A</span>Modifying a copy of the data on your flash drive</li>
+          <li class="option" data-q="44" data-correct="false"><span class="option-letter">B</span>Modifying a copy of the data on your hard drive</li>
+          <li class="option" data-q="44" data-correct="true"><span class="option-letter">C</span>Accessing the data in cloud-based account</li>
+          <li class="option" data-q="44" data-correct="false"><span class="option-letter">D</span>Sending the data to yourself through email to update</li>
+          <li class="option" data-q="44" data-correct="false"><span class="option-letter">E</span>Sending the data to your smartphone to update</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q44"></div>
+    </div>
+
+    <div class="question-card" id="q45">
+      <div class="card-header">
+        <div class="q-number">46</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">Which of the following is a component of an expert systems that consists facts and rules drawn from human experts?</p>
+        <ul class="options">
+          <li class="option" data-q="45" data-correct="false"><span class="option-letter">A</span>Inference engine</li>
+          <li class="option" data-q="45" data-correct="true"><span class="option-letter">B</span>Knowledge base</li>
+          <li class="option" data-q="45" data-correct="false"><span class="option-letter">C</span>Structured query language</li>
+          <li class="option" data-q="45" data-correct="false"><span class="option-letter">D</span>User interface</li>
+          <li class="option" data-q="45" data-correct="false"><span class="option-letter">E</span>Data dictionary</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q45"></div>
+    </div>
+
+    <div class="question-card" id="q46">
+      <div class="card-header">
+        <div class="q-number">47</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">When applying TQM strategy in project management, which of the following statements does NOT apply?</p>
+        <ul class="options">
+          <li class="option" data-q="46" data-correct="true"><span class="option-letter">A</span>The focus is directed at short term solutions rather than long term solutions</li>
+          <li class="option" data-q="46" data-correct="false"><span class="option-letter">B</span>Each employee plays a role in improving quality</li>
+          <li class="option" data-q="46" data-correct="false"><span class="option-letter">C</span>Fear in presenting ideas is driven out of project teamwork</li>
+          <li class="option" data-q="46" data-correct="false"><span class="option-letter">D</span>Barriers between departments are broken down as the project is completed</li>
+          <li class="option" data-q="46" data-correct="false"><span class="option-letter">E</span>All project processes are subject to improvement</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q46"></div>
+    </div>
+
+    <div class="question-card" id="q47">
+      <div class="card-header">
+        <div class="q-number">48</div>
+        <div class="q-section-tag">Information Systems</div>
+      </div>
+      <div class="card-body">
+        <p class="question-text">In knowledge management, which of the following refers to the task of keeping inventory of the location and availability of an organization knowledge assets?</p>
+        <ul class="options">
+          <li class="option" data-q="47" data-correct="false"><span class="option-letter">A</span>Knowledge strapping</li>
+          <li class="option" data-q="47" data-correct="false"><span class="option-letter">B</span>Knowledge transfer</li>
+          <li class="option" data-q="47" data-correct="false"><span class="option-letter">C</span>Knowledge creation</li>
+          <li class="option" data-q="47" data-correct="false"><span class="option-letter">D</span>Knowledge representations</li>
+          <li class="option" data-q="47" data-correct="true"><span class="option-letter">E</span>Knowledge brokering</li>
+        </ul>
+      </div>
+      <div class="answer-reveal" id="reveal-q47"></div>
+    </div>
+
+  </main>
+
+  <footer>
+    CLEP Information Systems &mdash; Practice Exam
+  </footer>
+
+  <div id="report-overlay">
+    <div id="report-box">
+      <h3>Report an Issue</h3>
+      <p class="report-subtitle">Help us improve this question</p>
+      <input type="text" id="report-name" placeholder="Your name (optional)">
+      <textarea id="report-issue" placeholder="Describe the issue with this question..."></textarea>
+      <div class="report-actions">
+        <button class="btn-cancel-report" id="cancel-report">Cancel</button>
+        <button class="btn-send-report" id="send-report">Send Report</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const TOTAL = 48;
+    const answered = new Set();
+    const cards = document.querySelectorAll('.question-card');
+    const progressLabel = document.getElementById('progress-label');
+    const progressFill = document.getElementById('progress-fill');
+
+    function updateProgress() {
+      const count = answered.size;
+      progressLabel.textContent = `${count} / ${TOTAL} answered`;
+      progressFill.style.width = `${(count / TOTAL) * 100}%`;
+    }
+
+    cards.forEach(card => {
+      const options = card.querySelectorAll('.option');
+      const qId = card.id.replace('q', '');
+      const reveal = document.getElementById(`reveal-q${qId}`);
+
+      options.forEach(opt => {
+        opt.addEventListener('click', () => {
+          if (opt.classList.contains('correct') || opt.classList.contains('wrong')) return;
+
+          options.forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+
+          const isCorrect = opt.getAttribute('data-correct') === 'true';
+
+          options.forEach(o => {
+            if (o.getAttribute('data-correct') === 'true') {
+              o.classList.add('correct');
+            } else if (o === opt && !isCorrect) {
+              o.classList.add('wrong');
+            }
+          });
+
+          if (!answered.has(qId)) {
+            answered.add(qId);
+            updateProgress();
+          }
+
+          reveal.textContent = isCorrect
+            ? 'Correct! Well done.'
+            : 'Incorrect. The correct answer is highlighted in green.';
+          reveal.classList.add('show');
+        });
+      });
+    });
+
+    document.getElementById('dark-toggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const btn = document.getElementById('dark-toggle');
+      btn.textContent = document.body.classList.contains('dark') ? '\u263E' : '\u2600';
+    });
+
+    let reportQ = null;
+    document.querySelectorAll('.btn-report').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        reportQ = e.target.closest('.question-card').querySelector('.q-number').textContent;
+        document.getElementById('report-overlay').classList.add('active');
+      });
+    });
+
+    document.getElementById('cancel-report').addEventListener('click', () => {
+      document.getElementById('report-overlay').classList.remove('active');
+      document.getElementById('report-name').value = '';
+      document.getElementById('report-issue').value = '';
+    });
+
+    document.getElementById('send-report').addEventListener('click', () => {
+      const name = document.getElementById('report-name').value;
+      const issue = document.getElementById('report-issue').value;
+      alert(`Report for Question ${reportQ} submitted.\nName: ${name || 'Anonymous'}\nIssue: ${issue}`);
+      document.getElementById('report-overlay').classList.remove('active');
+      document.getElementById('report-name').value = '';
+      document.getElementById('report-issue').value = '';
+    });
+
+    document.getElementById('report-overlay').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        document.getElementById('cancel-report').click();
+      }
+    });
+  </script>
+</body>
+
+</html>
